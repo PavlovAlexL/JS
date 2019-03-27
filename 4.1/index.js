@@ -9,33 +9,26 @@
 function query(collection) {
     if(arguments.length === 1) return collection;
     var collection = collection;
-
-
     for(var i = 1; i < arguments.length; i++){  //перебираем аргументы на наличие filter
-        console.log(arguments[i]);  //получаем  'filterIn',
-                                               //[Arguments] { '0': 'favoriteFruit', '1': [ 'Яблоко', 'Картофель' ] } ]
-
         if(arguments[i][0] === 'filterIn'){         //если находим, то вызываем библиотечную функцию filter
-            var values = arguments[i].slice(1); //создали массив параметров для фильтра [ [Arguments] { '0': 'favoriteFruit', '1': [ 'Яблоко', 'Картофель' ] } ]
-
-            collection.filter(function(value){ // //передаем в функцию единицу коллекции, напр.:
-                                            //{name: 'Сэм', gender: 'Мужской', email: 'luisazamora@example.com', favoriteFruit: 'Картофель'}
-                if(values[0] in value) {  //если первый аргумент (параметр фильтра) содержится в коллекции в виде параметра, то...
-                    for(var i = 1; i < values.length; i++) {
-                        if (value[values[0]] === values[i])   //если в объекте свойство с именем, взятым из первого аргумента массива равно
-
-                            }
+            var values = arguments[i].slice(1); //создали массив параметров для фильтра [ { '0': 'favoriteFruit', '1': [ 'Яблоко', 'Картофель' ] } ]console.log(collection[0]['favoriteFruit']);
+            collection = collection.filter(function(value){// // //передаем в функцию единицу коллекции, напр.:{name: 'Сэм', gender: 'Мужской', email: 'luisazamora@example.com', favoriteFruit: 'Картофель'}
+                if(values[0][0] in value) {  //если первый аргумент (параметр фильтра) содержится в коллекции в виде параметра, то...
+                    for(var i = 0; i < values[0][1].length; i++) {    //для всех свойств объекта - [ 'Яблоко', 'Картофель' ] :todo проверяет только первый аргумент, доработать!!!
+                        console.log('i= ' + i + ' ' + value[values[0][0]] + '===' + values[0][1][i]);
+                        return value[values[0][0]] === values[0][1][i];
+                    }
                 }
-
-            }
-         }
-
+            });
         }
+
     }
+    console.log(collection);
+}
 
     //console.log(collection);
 
-}
+
 
 /**
  * @params {String[]}
