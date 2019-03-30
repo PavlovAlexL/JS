@@ -40,13 +40,13 @@ var friends = [
         name: 'Керри',
         gender: 'Женский',
         email: 'danamcgee@example.com',
-        favoriteFruit: 'Апельсин'
+        favoriteFruit: 'Яблоко, Картофель'
     },
     {
         name: 'Стелла',
         gender: 'Женский',
         email: 'waltersguzman@example.com',
-        favoriteFruit: 'Картофель'
+        favoriteFruit: 'Картофель, Банан'
     }
 ];
 
@@ -54,12 +54,12 @@ var friends = [
 var result = lib.query(
     friends,
     lib.select('name', 'gender', 'email'),
-    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель']),
-    lib.select('name', 'email'),
-    lib.filterIn('favoriteFruit', ['Банан', 'Картофель'])
+    lib.filterIn('favoriteFruit', ['Яблоко', 'Картофель', "Кар"]),
+    lib.select('name', 'email', 'dfas'),
+    lib.filterIn('favoriteFruit', ['Картофель']),
 );
 
-//console.log(result);
+console.log(result);
 
 // //Сравниваем полученный результат с ожидаемым
 //assert.deepEqual(result, [
@@ -71,4 +71,3 @@ var result = lib.query(
 //]);
 //
 //console.info('OK!');
-//
