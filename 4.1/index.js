@@ -129,6 +129,8 @@ function query(collection) {
         } else args.push(arguments[i])
     }
 
+    // var args = [].slice.call(arguments); - вызываем метод в контексте arguments
+
     if (args.length === 1) {
         return cloneCollection;
     }
