@@ -9,7 +9,6 @@ var notifications = {
     counter: 0,
     count: function () {
         this.counter++;
-        console.log(this.counter);
     }
 };
 
@@ -26,11 +25,13 @@ emitter
     .emit('new_notification');
 
 // Проверяем количество нотификаций
+//console.log(notifications.counter)
 assert.equal(notifications.counter, 1, 'Получена одна нотификация');
 
 // В логе сохранено событие
 // Так как обработчик notifications.count отработал первым,
 //  в логах сохранено правильное количество нотификаций
+//console.log(logger.logs)
 assert.deepEqual(logger.logs, [
     'Произошло новое событие new_notification',
     'Добавлена новая нотификация. Количество - 1'
@@ -46,13 +47,16 @@ emitter
     .emit('new_notification');
 
 // Проверяем количество нотификаций
-//assert.equal(notifications.counter, 3, 'Получено три нотификации');
-// Проверяем, что логи были отключены, а затем снова подключены
+//console.log(notifications.counter)
+//console.log(logger.logs)
+assert.equal(notifications.counter, 3, 'Получено три нотификации');
+//// Проверяем, что логи были отключены, а затем снова подключены
 
 assert.deepEqual(logger.logs, [
-   'Произошло новое событие new_notification',
-   'Добавлена новая нотификация. Количество - 1',
-   'Новое событие new_notification!'
+   'Произошло новое событие new_notification',      //'Произошло новое событие new_notification',
+   'Добавлена новая нотификация. Количество - 1',   //'Добавлена новая нотификация. Количество - 1',
+   'Новое событие new_notification!'                //'Новое событие new_notification!'
 ]);
 
 console.info('OK!');
+
